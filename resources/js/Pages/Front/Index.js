@@ -7,6 +7,8 @@ import NavLink from '@/Components/NavLink';
 import { data } from 'autoprefixer';
 import Moment from 'react-moment';
 import Pluralize from 'react-pluralize'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart, faComment } from '@fortawesome/free-regular-svg-icons'
 export default function Dashboard(props) {
 
     return (
@@ -44,12 +46,15 @@ export default function Dashboard(props) {
 
                                 <div className="tags flex mb-4">
                                     {post.tags.map((tag) => (
-                                        <a href="#" key={tag.id} className="mr-2 text-xs text-gray-500">#{tag.name}</a>
+                                        <InertiaLink key={tag.id} href={route('tags.show', { tag: tag })} >
+                                            <h1 className="mr-2 text-xs text-gray-500">#{tag.name}</h1>
+                                        </InertiaLink>
                                     ))}
                                 </div>
                                 <div className="flex text-sm">
                                     <div className="mr-auto">
-                                        <a href="#" className="mr-7">{post.likes_count}</a>
+                                        <a href="#" className="mr-7"><FontAwesomeIcon icon={faHeart} /> {post.likes_count}</a>
+                                        <FontAwesomeIcon className="mr-2" icon={faComment} />
                                         {
                                             post.comments_count == 0 ?
                                                 props.auth.user ?
@@ -64,7 +69,7 @@ export default function Dashboard(props) {
 
                                     </div>
                                     <div>
-                                        <a href="#">Save</a>
+                                        <a href="#" className="px-3 py-1 bg-customBlue text-white rounded-md">Save</a>
                                     </div>
                                 </div>
 

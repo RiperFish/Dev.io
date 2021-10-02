@@ -86,7 +86,9 @@ export default function Dashboard(props) {
                         <h1 className=" text-5xl font-extrabold my-4">{post.title}</h1>
                         <div className="tags flex mb-8">
                             {post.tags.map((tag) => (
-                                <a href="#" key={tag.id} className="mr-2 text-base text-gray-500">#{tag.name}</a>
+                                <InertiaLink key={tag.id} href={route('tags.show', { tag: tag })} >
+                                    <h1 className="mr-2 text-base text-gray-500">#{tag.name}</h1>
+                                </InertiaLink>
                             ))}
                         </div>
                         <div className="mb-7">
