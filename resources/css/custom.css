@@ -1,0 +1,22 @@
+.formWrapper {
+    background-color: #F4F6FB;
+    box-shadow: #002f4b24 0px 10px 40px;
+}
+
+.addProjectForm label {
+    margin-right: 20px;
+}
+
+.addProjectForm input {
+    padding: 5px 30px;
+    border-radius: 6px;
+}
+
+.addProjectForm textarea {
+    border-radius: 10px;
+    border-color: #e5e7eb;
+}
+
+.addProjectForm .form_group {
+    margin-bottom: 10px;
+}
