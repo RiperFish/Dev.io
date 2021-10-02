@@ -10,6 +10,11 @@ class Tag extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name'
+        'name', 'description'
     ];
+
+    public function posts()
+    {
+        return $this->belongsToMany(Post::class)->with('tags','user')->withCount('likes','comments');
+    }
 }

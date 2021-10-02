@@ -29,8 +29,7 @@ export default function Dashboard(props) {
                     </div>
                     <div className="mx-5">
                         {props.posts.map((post) => (
-
-                            <div key={post.id} className=" rounded-md py-2 px-4 flex flex-col  bg-white border-b border-gray-200 my-3">
+                            <div key={post.id} className=" rounded-md p-5 flex flex-col shadow-md bg-white my-3 first:mt-0">
                                 <div className="flex items-center">
                                     <div className="avatar w-8 h-8 rounded-lg bg-green-300 mr-3"></div>
                                     <div>

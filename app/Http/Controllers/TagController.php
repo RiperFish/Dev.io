@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\Tag;
 use Inertia\Inertia;
 use Illuminate\Http\Request;
@@ -15,8 +16,8 @@ class TagController extends Controller
      */
     public function index()
     {
-       
-        $tags = Tag::all();
+
+        $tags = Tag::withCount('posts')->get();
         //dd($tags);
         return Inertia::render('Front/Tags/Index', ['tags' => $tags]);
     }
@@ -50,7 +51,10 @@ class TagController extends Controller
      */
     public function show(Tag $tag)
     {
-        //
+       
+        $tag->load('posts')->latest();
+        //dd($tag);
+        return Inertia::render('Front/Tags/Show', ['tag' => $tag]);
     }
 
     /**
