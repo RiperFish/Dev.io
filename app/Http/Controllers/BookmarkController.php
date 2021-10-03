@@ -36,12 +36,11 @@ class BookmarkController extends Controller
     public function store(Request $request)
     {
         $post = Post::with('bookmarks')->findOrFail($request->postId);
-        dd($post);
         $post->bookmarks()->create([
             'post_id' => $request->postId,
             'user_id' => auth()->id()
         ]);
-        
+        return redirect()->back();
     }
 
     /**
@@ -86,6 +85,11 @@ class BookmarkController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::with('bookmarks')->findOrFail($id);
+        $post->bookmarks()->delete([
+            'post_id' => $id,
+            'user_id' => auth()->id()
+        ]);
+        return redirect()->back();
     }
 }
