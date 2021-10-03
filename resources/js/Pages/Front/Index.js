@@ -1,18 +1,23 @@
 
 import React from 'react';
+import { Inertia } from '@inertiajs/inertia'
 import Authenticated from '@/Layouts/Authenticated';
-import { Head, InertiaLink } from '@inertiajs/inertia-react';
-import Guest from '@/Layouts/Guest';
+import { InertiaLink } from '@inertiajs/inertia-react';
+
 import NavLink from '@/Components/NavLink';
-import { data } from 'autoprefixer';
 import Moment from 'react-moment';
 import Pluralize from 'react-pluralize'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faComment } from '@fortawesome/free-regular-svg-icons'
 export default function Dashboard(props) {
 
-    return (
+    function BookmarkPost(e) {
+        e.preventDefault()
+        //console.log(e.target.postId.value)
+        Inertia.post('/bookmarks', { 'postId': e.target.postId.value })
+    }
 
+    return (
         <Authenticated
             auth={props.auth}
             errors={props.errors}
@@ -69,7 +74,17 @@ export default function Dashboard(props) {
 
                                     </div>
                                     <div>
-                                        <a href="#" className="px-3 py-1 bg-customBlue text-white rounded-md">Save</a>
+                                        {post.bookmarks.some(bookmarks => bookmarks.user_id === props.auth.user.id) ?
+                                            "Saved"
+                                            :
+
+                                            <form onSubmit={BookmarkPost} className="addProjectForm w-full">
+                                                <input type="hidden" name="postId" value={post.id} />
+                                                <div className="form_group ">
+                                                    <button type="submit" className="px-3 py-1 bg-customBlue text-white rounded-md">Save</button>
+                                                </div>
+                                            </form>
+                                        }
                                     </div>
                                 </div>
 

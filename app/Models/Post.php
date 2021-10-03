@@ -31,7 +31,10 @@ class Post extends Model
     {
         return $this->hasMany(Like::class);
     }
-
+    public function bookmarks()
+    {
+        return $this->hasMany(Bookmark::class)->with('user');
+    }
     public function likedBy($id)
     {
         return $this->likes->contains('user_id', auth()->id());

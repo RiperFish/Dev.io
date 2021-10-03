@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookmarkController;
 use App\Http\Controllers\CommentsController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LikeController;
@@ -7,6 +8,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\PostLikeController;
 use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\TagController;
+use App\Models\Bookmark;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -49,7 +51,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('comments', CommentsController::class);
 
     Route::resource('likes', LikeController::class);
-    
+    Route::resource('bookmarks', BookmarkController::class);
 });
 
 
