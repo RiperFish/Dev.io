@@ -8,7 +8,8 @@ import NavLink from '@/Components/NavLink';
 import Moment from 'react-moment';
 import Pluralize from 'react-pluralize'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHeart, faComment } from '@fortawesome/free-regular-svg-icons'
+import { faHeart, faComment, faBookmark } from '@fortawesome/free-regular-svg-icons'
+import { faTags, faList } from '@fortawesome/free-solid-svg-icons'
 export default function Dashboard(props) {
     function BookmarkPost(e) {
         e.preventDefault()
@@ -30,11 +31,13 @@ export default function Dashboard(props) {
 
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 grid grid-cols-home">
-                    <div className="border p-5">
-                        <NavLink href={route('tags.index')} >
+                    <div className="p-4 flex flex-col">
+                        <NavLink href={route('tags.index')} className="font-light text-lg ">
+                            <FontAwesomeIcon className="mr-2" icon={faTags} />
                             Tags
                         </NavLink>
-                        <NavLink href="">
+                        <NavLink href={route('bookmarks.index')} className="font-light text-lg">
+                            <FontAwesomeIcon className="mr-2" icon={faList} />
                             Reading list
                         </NavLink>
                     </div>
@@ -45,7 +48,7 @@ export default function Dashboard(props) {
                                     <div className="avatar w-8 h-8 rounded-full bg-green-300 mr-3"></div>
                                     <div>
                                         <h2 className="font-bold text-base text-gray-600">{post.user.name}</h2>
-                                        <p className=" text-xs text-gray-500"><Moment format="MMM D" withTitle>{post.created_at}</Moment>(<Moment fromNow>{post.created_at}</Moment>)</p>
+                                        <p className=" text-xs text-gray-500"><Moment format="MMM D" withTitle>{post.created_at}</Moment> (<Moment fromNow>{post.created_at}</Moment>)</p>
                                     </div>
                                 </div>
                                 <InertiaLink href={route('posts.show', { post: post })} >
@@ -106,7 +109,7 @@ export default function Dashboard(props) {
                             </div>
                         ))}
                     </div>
-                    <div className="border p-5">right sidbar</div>
+                    <div className=" p-5">right sidbar</div>
                 </div>
             </div>
         </Authenticated >

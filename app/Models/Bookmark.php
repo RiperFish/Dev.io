@@ -18,4 +18,8 @@ class Bookmark extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function post()
+    {
+        return $this->belongsTo(Post::class)->with('comments', 'tags', 'user');
+    }
 }

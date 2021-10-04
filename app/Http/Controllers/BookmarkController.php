@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Bookmark;
 use App\Models\Post;
+use App\Models\User;
+use Inertia\Inertia;
 use Illuminate\Http\Request;
 
 class BookmarkController extends Controller
@@ -14,7 +17,10 @@ class BookmarkController extends Controller
      */
     public function index()
     {
-        //
+
+        $bookmarks = Bookmark::with('post')->where('user_id', auth()->id())->get();//User::with('bookmarks')->withCount('bookmarks')->findOrFail(auth()->id());
+        //dd($bookmarks);
+        return Inertia::render('Front/Bookmarks/Index', ['bookmarks' => $bookmarks]);
     }
 
     /**

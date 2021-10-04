@@ -16,7 +16,7 @@ class TagController extends Controller
      */
     public function index()
     {
-
+        
         $tags = Tag::withCount('posts')->get();
         //dd($tags);
         return Inertia::render('Front/Tags/Index', ['tags' => $tags]);
