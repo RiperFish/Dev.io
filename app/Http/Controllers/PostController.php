@@ -40,11 +40,11 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreatePostRequest $request)
+    public function store(Request $request/* CreatePostRequest $request */)
     {
-        /* dd($request->tags); */
-        $post = Post::create($request->validated() + ['user_id' => auth()->id()]);
-        $post->tags()->attach($request->tags);
+        /* dd($request); */
+        $post = Post::create(['title' => $request->PostContent['title'], 'body' => $request->body, 'user_id' => auth()->id()]);
+        $post->tags()->attach($request->PostContent['tags']);
         return Redirect::route('home');
     }
 

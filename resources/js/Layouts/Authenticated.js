@@ -17,23 +17,25 @@ export default function Authenticated({ auth, header, children }) {
             <nav className="bg-white border-b border-gray-100">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex justify-between h-16">
-                        <div className="flex">
-                            <div className="flex-shrink-0 flex items-center">
+                        <div className="flex w-full">
+                            <div className="flex-shrink-0 flex items-center mr-auto">
                                 <Link href="/">
                                     <ApplicationLogo className="block h-9 w-auto text-gray-500" />
                                 </Link>
                             </div>
                             {showingNavigationDropdown ?
-                                <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                                    <NavLink href={route('dashboard')} active={route().current('dashboard' + '*')}>
+                                <div className="space-x-8 sm:-my-px sm:ml-10 flex items-center">
+                                    {/*  <NavLink href={route('dashboard')} active={route().current('dashboard' + '*')}>
                                         Dashboard
-                                    </NavLink>
-                                {/*     <NavLink href={route('projects')} active={route().current('projects' + '*')}>
+                                    </NavLink> */}
+                                    {/*     <NavLink href={route('projects')} active={route().current('projects' + '*')}>
                                         Projects
                                     </NavLink> */}
-                                    <NavLink href={route('posts.create')}>
-                                        Create Post
-                                    </NavLink>
+                                    <div className="py-1 px-3 border border-gray-500 rounded-full  ">
+                                        <NavLink href={route('posts.create')} className="text-white">
+                                            Create Post
+                                        </NavLink>
+                                    </div>
                                 </div>
                                 :
                                 <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
@@ -110,7 +112,7 @@ export default function Authenticated({ auth, header, children }) {
                             : null}
                     </div>
                 </div>
-{/*                 {showingNavigationDropdown ?
+                {/*                 {showingNavigationDropdown ?
                     <div className={(showingNavigationDropdown ? 'block' : 'hidden') + ' sm:hidden'}>
                         <div className="pt-2 pb-3 space-y-1">
                             <ResponsiveNavLink href={route('dashboard')} active={route().current('dashboard')}>

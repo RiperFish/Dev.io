@@ -7,6 +7,10 @@ import NavLink from '@/Components/NavLink';
 import { data } from 'autoprefixer';
 import Moment from 'react-moment';
 import { Inertia } from '@inertiajs/inertia'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import { faTags, faList, faHeart } from '@fortawesome/free-solid-svg-icons'
+
 export default function Dashboard(props) {
 
     var post = props.post
@@ -60,30 +64,38 @@ export default function Dashboard(props) {
         >
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 flex">
-                    <div className="border px-5 pt-9 flex flex-col">
+                    <div className=" px-5 pt-9 flex flex-col">
                         <div className="flex flex-col mb-7 items-center" >
                             <form onSubmit={SubmitLike} className="addProjectForm">
                                 <div className="form_group ">
-                                    <button type="submit" className={(userAlreadyVoted ? "text-white bg-red-700 " : "bg-gray-50 text-black") + "border px-2 py-2 shadow-sm rounded-md"}>Like</button>
+                                    <button type="submit"
+                                        className={(userAlreadyVoted ?
+                                            "text-red-700 border border-red-700 rounded-full px-3 py-1 pb-2 pt-3 " :
+                                            "text-black px-3 py-1 pb-2 pt-3")}>
+                                        <FontAwesomeIcon className=" w-full" icon={faHeart} size="lg" />
+
+                                    </button>
                                 </div>
                             </form>
-
-                            <span>{post.likes.length}</span>
+                            <span className={(userAlreadyVoted ?
+                                "text-red-700 " :
+                                "text-black")}>{post.likes.length}
+                            </span>
                         </div>
-                        <div className="flex flex-col mb-7 items-center " >
+                        {/* <div className="flex flex-col mb-7 items-center " >
                             <a href="#">Save</a>
                             <span>Sum of Saves</span>
-                        </div>
+                        </div> */}
                     </div>
                     <div className="mx-5 flex-1 flex-col border p-9 bg-white rounded-3xl">
                         <div className="flex items-center mb-6">
                             <div className="avatar w-8 h-8 rounded-full bg-customBlue mr-3"></div>
                             <div>
-                                <h2 className="font-bold text-base text-gray-600">{post.user.name}</h2>
+                                <h2 className=" font-semibold text-base text-gray-600">{post.user.name}</h2>
                                 <p className=" text-xs text-gray-500">Posted on <Moment format="MMM D" withTitle>{post.created_at}</Moment> (<Moment fromNow>{post.created_at}</Moment>)</p>
                             </div>
                         </div>
-                        <h1 className=" text-5xl font-extrabold my-4">{post.title}</h1>
+                        <h1 className=" text-4xl font-extrabold my-4">{post.title}</h1>
                         <div className="tags flex mb-8">
                             {post.tags.map((tag) => (
                                 <InertiaLink key={tag.id} href={route('tags.show', { tag: tag })} >
@@ -91,8 +103,10 @@ export default function Dashboard(props) {
                                 </InertiaLink>
                             ))}
                         </div>
-                        <div className="mb-7">
-                            <p className="text-lg">{post.body}</p>
+                        <div className="mb-7" >
+                            {/* <p className="text-lg"></p> */}
+                            <div dangerouslySetInnerHTML={{ __html: post.body }} />
+
                         </div>
 
                         <hr />
@@ -131,7 +145,7 @@ export default function Dashboard(props) {
                             </div>
                         ))}
                     </div>
-                    <div className="border p-5 w-3/12">Author details</div>
+                    <div className="p-5 w-3/12">Author details</div>
                 </div>
             </div>
         </Authenticated >

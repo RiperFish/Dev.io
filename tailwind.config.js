@@ -17,10 +17,13 @@ module.exports = {
                 // Simple 16 column grid
                 'home': '20% 55% 25%',
             },
-            colors:{
-                customBg:'#f5f6fa',
-                customBlue : '#487eb0'
+            colors: {
+                customBg: '#f5f6fa',
+                customBlue: '#487eb0'
             },
+            spacing: {
+                editor: '500px',
+            }
         },
     },
 
