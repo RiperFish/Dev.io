@@ -49,7 +49,7 @@ Route::get('/dashboard', function () {
 Route::middleware(['auth'])->group(function () {
     
     Route::resource('comments', CommentsController::class);
-
+    Route::post('tags/follow',[TagController::class, 'followTag']);
     Route::resource('likes', LikeController::class);
     Route::resource('bookmarks', BookmarkController::class);
 });

@@ -7,11 +7,12 @@ import NavLink from '@/Components/NavLink';
 import { data } from 'autoprefixer';
 import Moment from 'react-moment';
 import Pluralize from 'react-pluralize'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faHeart, faComment, faBookmark } from '@fortawesome/free-regular-svg-icons'
+import { faTags, faList } from '@fortawesome/free-solid-svg-icons'
 export default function Dashboard(props) {
     var tag = props.tag
     var tagPosts = tag.posts
-
-    console.log(tagPosts)
     return (
 
         <Authenticated
@@ -22,17 +23,25 @@ export default function Dashboard(props) {
 
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 grid grid-cols-home">
-                    <div className="border p-5">
-                        <NavLink href={route('tags.index')} >
-                            Tags
-                        </NavLink>
-                        <NavLink href="">
-                            Reading list
-                        </NavLink>
+                    <div className="p-4 flex flex-col">
+                        <div className=" mb-4">
+                            <NavLink href={route('tags.index')} className="font-light text-lg">
+                                <FontAwesomeIcon className="mr-2" icon={faTags} />
+                                Tags
+                            </NavLink>
+                        </div>
+                        <div className=" mb-4">
+                            <NavLink href={route('bookmarks.index')} className="font-light text-lg">
+                                <FontAwesomeIcon className="mr-2" icon={faList} />
+                                Reading list
+                            </NavLink>
+                        </div>
+
                     </div>
                     <div className="mx-5">
+                        Posts
                         {tagPosts.map((post) => (
-                            <div key={post.id} className=" rounded-md p-5 flex flex-col shadow-md bg-white my-3 first:mt-0">
+                            <div key={post.id} className=" rounded-lg p-5 flex flex-col shadow-custom border border-gray-200 my-3 first:mt-0">
                                 <div className="flex items-center">
                                     <div className="avatar w-8 h-8 rounded-lg bg-green-300 mr-3"></div>
                                     <div>
@@ -74,7 +83,10 @@ export default function Dashboard(props) {
                             </div>
                         ))}
                     </div>
-                    <div className="border p-5">right sidbar</div>
+                    <div className="p-5">
+                        <h1>Who to follow ( top authors )</h1>
+
+                    </div>
                 </div>
             </div>
         </Authenticated >

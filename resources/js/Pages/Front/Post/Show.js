@@ -47,7 +47,12 @@ export default function Dashboard(props) {
             commentBody: "",
             post_id: post.id,
             user_id: props.auth.user ? props.auth.user.id : ""
-        })
+        },
+            {
+                preserveScroll: true,
+                resetOnSuccess: false,
+            }
+        )
     }
 
     function SubmitLike(e) {

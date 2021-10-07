@@ -1,0 +1,3 @@
+Subscribe to tags ( Done )
+fetch posts according to my tags ( In progress )
+delete post and edit if mine

@@ -20,27 +20,39 @@
 .addProjectForm .form_group {
     margin-bottom: 10px;
 }
-button .svg-inline--fa{
+
+button .svg-inline--fa {
     width: 36px !important;
     height: 36px !important;
 }
+
+.side-nav svg{
+    width: 20px !important;
+    height: 20px !important;
+}
+
 /* Quill Editor */
+
 .editorContainer .quill {
     height: 82%;
 }
-.ql-toolbar.ql-snow{
+
+.ql-toolbar.ql-snow {
     border-top-left-radius: 6px;
     border-top-right-radius: 6px;
     border-color: rgb(229, 231, 235) !important;
 }
-.ql-container.ql-snow{
+
+.ql-container.ql-snow {
     border-bottom-left-radius: 6px;
     border-bottom-right-radius: 6px;
     border-color: rgb(229, 231, 235)!important;
 }
-.css-1s2u09g-control{
+
+.css-1s2u09g-control {
     border-color: rgb(229, 231, 235)!important;
 }
+
 /* Draft editor */
 
 .RichEditor-root {

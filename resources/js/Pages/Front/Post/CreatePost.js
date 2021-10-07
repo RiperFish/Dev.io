@@ -36,7 +36,12 @@ export default function CreatePost(props) {
     }
     function handleSubmit(e) {
         e.preventDefault()
-        Inertia.post('/posts', { PostContent, "body": postBody })
+        Inertia.post('/posts', { PostContent, "body": postBody },
+            {
+                preserveScroll: true,
+                resetOnSuccess: false,
+            }
+        )
     }
 
     const modules = {

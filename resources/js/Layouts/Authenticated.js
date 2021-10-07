@@ -31,9 +31,9 @@ export default function Authenticated({ auth, header, children }) {
                                     {/*     <NavLink href={route('projects')} active={route().current('projects' + '*')}>
                                         Projects
                                     </NavLink> */}
-                                    <div className="py-1 px-3 border border-gray-500 rounded-full  ">
+                                    <div className="py-1 px-3 border border-gray-200 shadow-custom  bg-indigo-500 rounded-lg  ">
                                         <NavLink href={route('posts.create')} className="text-white">
-                                            Create Post
+                                            <span className="text-white">Create Post</span> 
                                         </NavLink>
                                     </div>
                                 </div>

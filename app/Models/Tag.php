@@ -17,4 +17,9 @@ class Tag extends Model
     {
         return $this->belongsToMany(Post::class)->with('tags','user')->withCount('likes','comments');
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }
