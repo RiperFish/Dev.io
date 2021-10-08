@@ -1,3 +1,3 @@
 Subscribe to tags ( Done )
-fetch posts according to my tags ( In progress )
+fetch posts according to my tags ( Done )
 delete post and edit if mine

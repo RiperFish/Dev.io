@@ -60,6 +60,6 @@ class User extends Authenticatable
     }
     public function tags()
     {
-        return $this->belongsToMany(Tag::class);
+        return $this->belongsToMany(Tag::class)->where('user_id', auth()->id());
     }
 }
