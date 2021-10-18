@@ -84,7 +84,8 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $post->update(['title' => $request->PostContent['title'], 'body' => $request->body]);
+        $post->tags()->sync($request->PostContent['tags']);
     }
 
     /**

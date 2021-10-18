@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Authenticated from '@/Layouts/Authenticated';
 import { Head } from '@inertiajs/inertia-react';
 import { Inertia } from '@inertiajs/inertia'
@@ -11,13 +11,12 @@ import 'react-quill/dist/quill.snow.css';
 import ImageResize from 'quill-image-resize-module-react';
 
 export default function EditPost(props) {
-    console.log(props)
     Quill.register('modules/imageResize', ImageResize);
 
-    const [postBody, setPostBody] = useState('');
+    const [PostBody, setPostBody] = useState('');
     const [PostContent, setPostContent] = useState({
-        title: "",
-        tags: []
+        title: '',
+        tags: ''
     })
     function handleChange(e) {
         const key = e.target.id;
@@ -35,7 +34,7 @@ export default function EditPost(props) {
     }
     function handleSubmit(e) {
         e.preventDefault()
-        Inertia.post('/posts', { PostContent, "body": postBody },
+        Inertia.put(`/posts/${props.post.id}`, { PostContent, "body": PostBody },
             {
                 preserveScroll: true,
                 resetOnSuccess: false,
@@ -62,16 +61,26 @@ export default function EditPost(props) {
             modules: ['Resize', 'DisplaySize']
         }
     }
+
     var tags = []
     props.allTags.forEach(element => {
         tags.push({ 'value': element.id, 'label': element.name.charAt(0).toUpperCase() + element.name.slice(1) })
     });
 
-
     var postTags = []
-    props.post.tags.forEach(element => {
-        postTags.push({ 'value': element.id, 'label': element.name.charAt(0).toUpperCase() + element.name.slice(1) })
-    });
+    useEffect(() => {
+        setPostBody(props.post.body)
+        setPostContent(PostContent => ({
+            ...PostContent,
+            title: props.post.title,
+            tags: props.post.tags.map((tag) => (
+                { 'value': tag.id, 'label': tag.name.charAt(0).toUpperCase() + tag.name.slice(1) }
+            ))
+        }))
+        props.post.tags.forEach(element => {
+            postTags.push({ 'value': element.id, 'label': element.name.charAt(0).toUpperCase() + element.name.slice(1) })
+        });
+    }, []);
 
     return (
 
@@ -86,13 +95,13 @@ export default function EditPost(props) {
                         <form onSubmit={handleSubmit} className="flex flex-col addProjectForm">
                             <div className="form_group flex flex-col">
                                 <label htmlFor="title">Title :</label>
-                                <input id="title" value={props.post.title} onChange={handleChange}
+                                <input id="title" value={PostContent.title} onChange={handleChange}
                                     className=" border " />
                             </div>
 
                             <div className="my-5 h-editor editorContainer">
                                 <label htmlFor="body">Post content :</label>
-                                <ReactQuill theme="snow" value={props.post.body} onChange={setPostBody} modules={modules}
+                                <ReactQuill theme="snow" value={PostBody} onChange={setPostBody} modules={modules}
                                 />
                             </div>
                             <div className="form_group flex flex-col">
@@ -107,7 +116,7 @@ export default function EditPost(props) {
                                 />
                             </div>
                             <div className="form_group ">
-                                <button type="submit" className="border px-5 py-2 shadow-sm bg-customBlue rounded-md text-white">Submit</button>
+                                <button type="submit" className="border px-5 py-2 shadow-sm bg-customBlue rounded-md text-white">Update</button>
                             </div>
                         </form>
 
