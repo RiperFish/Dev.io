@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreatePostRequest;
-use App\Models\Comment;
 use App\Models\Tag;
 use App\Models\Post;
 use Inertia\Inertia;
+use App\Models\Comment;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\CreatePostRequest;
 use Illuminate\Support\Facades\Redirect;
 
 class PostController extends Controller
@@ -69,7 +70,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        $allTags = Tag::all();
+        $post->load('tags');
+        return Inertia::render('Front/Post/EditPost', ['post' => $post, 'allTags' => $allTags]);
     }
 
     /**
@@ -92,6 +95,12 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        if (Auth::check() && auth()->id() === $post->user_id) {
+            $x = Post::find($post->id);
+            $x->delete();
+            return redirect()->back();
+        } else {
+            abort(403, 'Unauthorized action.');
+        }
     }
 }

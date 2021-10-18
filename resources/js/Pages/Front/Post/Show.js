@@ -67,7 +67,7 @@ export default function Dashboard(props) {
             errors={props.errors}
 
         >
-            <div className="py-12">
+            <div className="py-12 bg-wrapper">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8 flex">
                     <div className=" px-5 pt-9 flex flex-col">
                         <div className="flex flex-col mb-7 items-center" >
@@ -92,7 +92,7 @@ export default function Dashboard(props) {
                             <span>Sum of Saves</span>
                         </div> */}
                     </div>
-                    <div className="mx-5 flex-1 flex-col border p-9 bg-white rounded-3xl">
+                    <div className="mx-5 flex-1 flex-col p-9 bg-white rounded-2xl shadow-custom">
                         <div className="flex items-center mb-6">
                             <div className="avatar w-8 h-8 rounded-full bg-customBlue mr-3"></div>
                             <div>
@@ -123,7 +123,7 @@ export default function Dashboard(props) {
 
                                 <div className="form_group flex flex-col">
                                     <textarea placeholder="Add to the discussion" rows="4" cols="50" id="commentBody" value={CommentContent.commentBody} onChange={handleChange}
-                                        className="shadow-sm border border-gray-200 rounded-3xl mb-2" />
+                                        className="shadow-sm border border-gray-200 rounded-2xl mb-2" />
                                 </div>
                                 <div className="form_group ">
                                     <button type="submit" className="border px-5 py-2 shadow-sm bg-customBlue rounded-full text-white">Submit</button>
@@ -136,7 +136,7 @@ export default function Dashboard(props) {
                             <div key={comment.id} className="flex mb-5">
                                 <div className="avatar w-8 h-8 rounded-full bg-green-300 mr-3"></div>
 
-                                <div className="form_group flex flex-col w-full shadow-sm border border-gray-200 bg-white rounded-3xl mb-4 p-5">
+                                <div className="form_group flex flex-col w-full shadow-sm border border-gray-200 bg-white rounded-2xl mb-4 p-5">
                                     <div className="flex items-center mb-4">
                                         <h2 className="font-bold text-base text-gray-600">{comment.user.name}</h2>
                                         <div className="avatar w-1 h-1 rounded-full bg-gray-400 mx-3"></div>

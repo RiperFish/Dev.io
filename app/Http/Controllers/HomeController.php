@@ -32,7 +32,7 @@ class HomeController extends Controller
                 ->withCount('comments', 'likes', 'bookmarks')
                 ->latest()
                 ->get(); */
-            return Inertia::render('Front/Index.js', ['mytagsposts' => $posts]);
+            return Inertia::render('Front/Index.js', ['posts' => $posts]);
         } else {
             $posts = Post::with('user', 'tags')->withCount('comments', 'likes', 'bookmarks')->latest()->get();
             return Inertia::render('Front/Index.js', ['posts' => $posts]);

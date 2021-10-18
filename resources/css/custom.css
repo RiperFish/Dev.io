@@ -30,7 +30,12 @@ button .svg-inline--fa {
     width: 20px !important;
     height: 20px !important;
 }
-
+/* .dropdown:hover{
+    background-color: red;
+}
+.dropdown:hover > .dropdown-content {
+	display: block;
+} */
 /* Quill Editor */
 
 .editorContainer .quill {

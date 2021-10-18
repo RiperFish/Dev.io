@@ -1,3 +1,4 @@
 Subscribe to tags ( Done )
 fetch posts according to my tags ( Done )
-delete post and edit if mine
+delete post and edit if mine ( Delete done, edit in progress )
+add notifications for liking and commenting and following a user
