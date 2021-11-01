@@ -37,7 +37,7 @@ class HandleInertiaRequests extends Middleware
         if (Auth::check()) {
             return array_merge(parent::share($request), [
                 'auth' => [
-                    'user' => $request->user()->load('tags'),
+                    'user' => $request->user()->load('tags','unreadNotifications'),
                 ],
             ]);
         } else {

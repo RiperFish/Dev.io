@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Like;
 use App\Models\Post;
+use App\Notifications\PostLiked;
 use Illuminate\Http\Request;
 
 class LikeController extends Controller
@@ -39,14 +40,19 @@ class LikeController extends Controller
 
         //dd(Post::find($request->id)->likes()->where('user_id', $request->user()->id)->get());
         //dd(Post::find($request->id)->likedBy($request->user()->id));
-
-        if (Post::find($request->id)->likedBy($request->user()->id)) {
-            Like::where('user_id', $request->user()->id)->where('post_id', $request->id)->delete();
+        $currentPost = Post::find($request->id);
+        $userId = $request->user()->id;
+        if ($currentPost->likedBy($userId)) {
+            Like::where('user_id', $userId)->where('post_id', $request->id)->delete();
         } else {
             Like::create([
-                'user_id' => $request->user()->id,
+                'user_id' => $userId,
                 'post_id' => $request->id
             ]);
+            $currentPost->user->notify(new PostLiked($currentPost, auth()->user()));
+            /*  if ($response['attached']) {
+                
+            } */
         }
 
         return redirect()->back();

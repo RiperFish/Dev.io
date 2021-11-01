@@ -15,8 +15,7 @@ import { faTags, faList, faClipboard } from '@fortawesome/free-solid-svg-icons'
 
 
 export default function Dashboard(props) {
-    console.log(props)
-
+    console.log( props)
 
     /*   window.onload = function () {
           document.querySelectorAll('.drop-down-btn').forEach(element => {

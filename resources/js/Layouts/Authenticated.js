@@ -6,11 +6,6 @@ import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link } from '@inertiajs/inertia-react';
 
 export default function Authenticated({ auth, header, children }) {
-    const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(auth.user ? true : false);
-
-    /* if(!auth.user){
-        setShowingNavigationDropdown(false)
-    } */
     return (
         <div className="min-h-screen bg-white">
 
@@ -23,7 +18,7 @@ export default function Authenticated({ auth, header, children }) {
                                     <ApplicationLogo className="block h-9 w-auto text-gray-500" />
                                 </Link>
                             </div>
-                            {showingNavigationDropdown ?
+                            {auth.user ?
                                 <div className="space-x-8 sm:-my-px sm:ml-10 flex items-center">
                                     {/*  <NavLink href={route('dashboard')} active={route().current('dashboard' + '*')}>
                                         Dashboard
@@ -33,7 +28,12 @@ export default function Authenticated({ auth, header, children }) {
                                     </NavLink> */}
                                     <div className="py-1 px-3 border border-gray-200 shadow-custom  bg-indigo-500 rounded-full  ">
                                         <NavLink href={route('posts.create')} className="text-white">
-                                            <span className="text-white">Create Post</span> 
+                                            <span className="text-white">Create Post</span>
+                                        </NavLink>
+                                    </div>
+                                    <div className="py-1 px-3 border border-gray-200 shadow-custom  bg-indigo-500 rounded-full  ">
+                                        <NavLink href={route('posts.create')} className="text-white">
+                                            <span className="text-white">{auth.user.unread_notifications.length}</span>
                                         </NavLink>
                                     </div>
                                 </div>
@@ -48,7 +48,7 @@ export default function Authenticated({ auth, header, children }) {
                                     </NavLink>
                                 </div>}
                         </div>
-                        {showingNavigationDropdown ?
+                        {auth.user ?
                             <div className="hidden sm:flex sm:items-center sm:ml-6">
                                 <div className="ml-3 relative">
                                     <Dropdown>
@@ -84,8 +84,9 @@ export default function Authenticated({ auth, header, children }) {
                                     </Dropdown>
                                 </div>
                             </div>
-                            : null}
-                        {showingNavigationDropdown ?
+                            : null
+                        }
+                        {/*         {showingNavigationDropdown ?
                             <div className="-mr-2 flex items-center sm:hidden">
                                 <button
                                     onClick={() => setShowingNavigationDropdown((previousState) => !previousState)}
@@ -109,7 +110,8 @@ export default function Authenticated({ auth, header, children }) {
                                     </svg>
                                 </button>
                             </div>
-                            : null}
+                            : null
+                        } */}
                     </div>
                 </div>
                 {/*                 {showingNavigationDropdown ?

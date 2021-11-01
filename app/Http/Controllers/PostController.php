@@ -86,6 +86,7 @@ class PostController extends Controller
     {
         $post->update(['title' => $request->PostContent['title'], 'body' => $request->body]);
         $post->tags()->sync($request->PostContent['tags']);
+        return redirect()->back();
     }
 
     /**

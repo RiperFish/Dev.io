@@ -3,3 +3,17 @@ fetch posts according to my tags ( Done )
 delete post and edit if mine ( Delete done, edit done )
 add validation when adding post, editing
 add notifications for liking and commenting and following a user
+add likes to comments, and think a way to comment and comment ( indentation )
+
+// USER PROFILE
+user infos
+users profile page ( posts / skills / stats{tags followed, number of posts, number of comments})
+user follow system
+
+// POST PAGE
+in the right, show button to follow the author, and under it, few posts from the same author
+share the post on social media
+subscribe to a post discussion ( comments ) to get notified for new comments
+
+// Add auth middlware to create post
+// Add backend confirmation for likes
