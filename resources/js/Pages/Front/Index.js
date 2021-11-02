@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { Inertia } from '@inertiajs/inertia'
 import Authenticated from '@/Layouts/Authenticated';
@@ -15,7 +15,7 @@ import { faTags, faList, faClipboard } from '@fortawesome/free-solid-svg-icons'
 
 
 export default function Dashboard(props) {
-    console.log( props)
+    console.log(props)
 
     /*   window.onload = function () {
           document.querySelectorAll('.drop-down-btn').forEach(element => {
@@ -27,6 +27,14 @@ export default function Dashboard(props) {
       }; */
 
 
+    useEffect(() => {
+        if (props.auth.user) {
+            window.Echo.private(`App.Models.User.${props.auth.user.id}`).notification((notification)=>{
+                console.log(notification)
+            })
+        }
+      
+    });
 
     function BookmarkPost(e) {
         e.preventDefault()
@@ -107,7 +115,7 @@ export default function Dashboard(props) {
                                 <div key={post.id} className=" p-5 flex rounded-2xl relative shadow-custom  my-6 first:mt-0 bg-white"> {/* border border-gray-200 bg-white */}
                                     {props.auth.user ? post.user_id === props.auth.user.id ? <PostMenu post={post}></PostMenu> : null : null}
                                     <div className="avatar w-8 h-8 mt-1 p-2 rounded-full bg-green-300 mr-3"></div>
-                                   
+
                                     <div className="flex flex-col w-full">
                                         <div className="flex flex-col ">
                                             <h2 className=" font-semibold text-base text-gray-600">{post.user.name}</h2>
@@ -129,7 +137,7 @@ export default function Dashboard(props) {
                                         <div className="flex items-center text-sm">
                                             <div className="mr-auto flex items-center text-gray-500">
                                                 {props.auth.user ?
-                                                    post.likes.some(likes => likes.user_id === props.auth.user.id) ?
+                                                    post.likes.some(likes => likes.id === props.auth.user.id) ?
                                                         <a className="mr-7 text-red-400"><FontAwesomeIcon icon={faHeart} /> {post.likes_count}</a>
                                                         :
                                                         <a className="mr-7"><FontAwesomeIcon icon={faHeart} /> {post.likes_count}</a>

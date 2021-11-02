@@ -42,18 +42,26 @@ class LikeController extends Controller
         //dd(Post::find($request->id)->likedBy($request->user()->id));
         $currentPost = Post::find($request->id);
         $userId = $request->user()->id;
-        if ($currentPost->likedBy($userId)) {
-            Like::where('user_id', $userId)->where('post_id', $request->id)->delete();
-        } else {
-            Like::create([
-                'user_id' => $userId,
-                'post_id' => $request->id
-            ]);
+
+        $res = $currentPost->likes()->toggle(auth()->id());
+        dd($res);
+        if ($res['attached']) {
             $currentPost->user->notify(new PostLiked($currentPost, auth()->user()));
-            /*  if ($response['attached']) {
-                
-            } */
         }
+        /* if ($currentPost->likedBy($userId)) {
+            //Like::where('user_id', $userId)->where('post_id', $request->id)->delete();
+            $currentPost->likes()->detach(auth()->id());
+        } else {
+            // $res = Like::create([
+            //     'user_id' => $userId,
+            //     'post_id' => $request->id
+            // ]);
+            $currentPost->likes()->attach(auth()->id());
+           
+            // if ($res['attached']) {
+            //     $currentPost->user->notify(new PostLiked($currentPost, auth()->user()));
+            // }
+        } */
 
         return redirect()->back();
     }

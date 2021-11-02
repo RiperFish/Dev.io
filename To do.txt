@@ -17,3 +17,5 @@ subscribe to a post discussion ( comments ) to get notified for new comments
 
 // Add auth middlware to create post
 // Add backend confirmation for likes
+
+PS : Load only required fields from eloquent relations such as : Tags.name

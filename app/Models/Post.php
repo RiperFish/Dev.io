@@ -29,8 +29,10 @@ class Post extends Model
     }
     public function likes()
     {
-        return $this->hasMany(Like::class);
+        //return $this->hasMany(Like::class);
+        return $this->belongsToMany(User::class, 'likes')->withTimestamps();
     }
+ 
     public function bookmarks()
     {
         return $this->hasMany(Bookmark::class)->with('user');

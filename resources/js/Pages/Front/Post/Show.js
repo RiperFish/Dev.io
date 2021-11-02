@@ -17,12 +17,13 @@ export default function Dashboard(props) {
     const [userAlreadyVoted, setUserAlreadyVoted] = useState(false)
     useEffect(() => {
         if (props.auth.user) {
-            if (post.likes.some(likes => likes.user_id === props.auth.user.id)) {
+            if (post.likes.some(likes => likes.id === props.auth.user.id)) {
                 setUserAlreadyVoted(true)
             } else {
                 setUserAlreadyVoted(false)
             }
         }
+
 
     });
 
